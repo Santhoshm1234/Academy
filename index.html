@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedVault - Secure Your Health</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #241142, #4e2b90);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 7px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-left: 50px;
+        }
+
+        .logo-img {
+            width: 40px; /* Adjust the size as needed */
+            height: 40px; /* Adjust the size as needed */
+            margin-right: 10px; /* Space between animation and text */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 15px;
+            position: relative;
+            transition: color 0.3s ease-in-out;
+            margin-right: 30px;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        /* Underline Animation */
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #ffcc00;
+            left: 0;
+            bottom: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 80px 7%;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .hero-text h1 {
+            font-size: 3.0em;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .hero-text p {
+            font-size: 1.3em;
+            margin: 15px 0;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Call-To-Action Button */
+        .cta-button {
+            background: #ffcc00;
+            color:#241142;
+            padding: 14px 28px;
+            margin-top: 0;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+            box-shadow: 0px 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #ff9900;
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(255, 153, 0, 0.4);
+        }
+
+        /* About Us Section */
+        .about {
+            padding: 100px 10%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            border-radius: 20px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .about h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 10%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            border-radius: 20px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .services h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            margin-bottom: 40px;
+        }
+
+        .service-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .service-card {
+            width: 300px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .service-card p {
+            font-size: 1.1em;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 10%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            border-radius: 20px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .contact h2 {
+            font-size: 2.5em;
+            color: #ffcc00;
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form button {
+            background: #ffcc00;
+            color: #241142;
+            padding: 14px 28px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+            box-shadow: 0px 5px 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .contact-form button:hover {
+            background: #ff9900;
+            transform: scale(1.1);
+            box-shadow: 0px 8px 20px rgba(255, 153, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-image {
+                margin-top: 30px;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(255, 255, 255, 0.2);
+                width: 200px;
+                text-align: center;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="health-reports.gif" alt="MedVault Animation" class="logo-img"> MedVault
+        </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Welcome To MedVault</h1>
+            <p>At MedVault, we prioritize your health and safety by providing a seamless and secure way to manage your medical records. Stay organized, stay informed, and take control of your healthcare journey with ease. Your health. Your data. Your peace of mind.</p>
+            <p>Let’s get started!</p> 
+            <a href="register.html"><button class="cta-button">Register Now!</button></a>
+        </div>
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <img src="image1.jpeg" alt="MedVault Hero Image">
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about" class="about">
+        <h2>About Us</h2>
+        <p>MedVault is a revolutionary platform designed to securely store and manage your medical records. Our mission is to provide a seamless and secure way for individuals to access their health information anytime, anywhere. With cutting-edge technology and a user-friendly interface, MedVault ensures that your health data is always at your fingertips.</p>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>Secure Record Storage</h3>
+                <p>Store your medical records securely in the cloud with end-to-end encryption.</p>
+            </div>
+            <div class="service-card">
+                <h3>Appointment Booking</h3>
+                <p>Book doctor appointments with ease and receive reminders for your visits.</p>
+            </div>
+            <div class="service-card">
+                <h3>Health Insights</h3>
+                <p>Access personalized health insights and recommendations based on your medical history.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+</body>
+</html>
